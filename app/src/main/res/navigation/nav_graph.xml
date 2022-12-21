@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_playingNowSeeAll"
+            app:destination="@id/playingNowSeeAll" />
+        <action
+            android:id="@+id/action_mainFragment_to_popularSeeAll"
+            app:destination="@id/popularSeeAll" />
+        <action
+            android:id="@+id/action_mainFragment_to_topRatedSeeAll"
+            app:destination="@id/topRatedSeeAll" />
+        <action
+            android:id="@+id/action_mainFragment_to_movieDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/playingNowSeeAll"
+        android:name="PlayingNowSeeAll"
+        android:label="PlayingNowSeeAll" >
+        <action
+            android:id="@+id/action_playingNowSeeAll_to_movieDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/popularSeeAll"
+        android:name="com.example.moviesapp.presentation.Fragments.PopularSeeAll"
+        android:label="fragment_popular_see_all"
+        tools:layout="@layout/fragment_popular_see_all" >
+        <action
+            android:id="@+id/action_popularSeeAll_to_movieDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/topRatedSeeAll"
+        android:name="com.example.moviesapp.presentation.Fragments.TopRatedSeeAll"
+        android:label="fragment_top_rated_see_all"
+        tools:layout="@layout/fragment_top_rated_see_all" >
+        <action
+            android:id="@+id/action_topRatedSeeAll_to_movieDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetails"
+        android:name="com.example.moviesapp.presentation.Fragments.MovieDetails"
+        android:label="fragment_movie_details"
+        tools:layout="@layout/fragment_movie_details" />
+</navigation>
