@@ -12,19 +12,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:cardUseCompatPadding="true"
-        android:background="@color/main_background_color">
+        android:background="@color/main_background_color"
+        app:cardCornerRadius="7dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="15dp"
+            android:paddingBottom="15dp"
             android:background="@color/card_background_color">
 
             <ImageView
                 android:id="@+id/ivPopular"
                 android:layout_width="120dp"
                 android:layout_height="170dp"
-                android:layout_marginTop="15dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/interstellar"
                 app:layout_constraintEnd_toEndOf="parent"

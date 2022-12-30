@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -16,6 +17,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "API_KEY", "\"${API_KEY}\"")
+        buildConfigField("String" , "API_BASE_URL","\"${API_BASE_URL}\"")
     }
 
     buildTypes {
@@ -46,10 +49,35 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
     // Recycler View
     implementation("androidx.recyclerview:recyclerview:1.2.1")
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
+
     // Navigation Components
     implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
     implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+
+    // Koin
+    implementation "io.insert-koin:koin-android:3.3.1"
+    implementation "io.insert-koin:koin-core:3.3.0"
+
+    //RX
+    implementation "io.reactivex.rxjava3:rxjava:3.1.5"
+    implementation "com.github.akarnokd:rxjava3-retrofit-adapter:3.0.0"
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+
+    // moshi ( for JSON parsing )
+    implementation 'com.squareup.moshi:moshi:1.14.0'
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.14.0'
+
+    // retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    // lifecycle
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-process:2.6.0-alpha03'
 }
