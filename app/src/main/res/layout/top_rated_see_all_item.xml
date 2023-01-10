@@ -36,22 +36,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
-        app:layout_constraintEnd_toEndOf="@id/tvMovieNameTopRatedSeeAll"
         app:layout_constraintTop_toBottomOf="@id/tvMovieNameTopRatedSeeAll"
         android:text="Description"
         android:textColor="@color/white"
-        android:textSize="13sp">
+        android:textSize="13sp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="5dp">
     </TextView>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
+        android:paddingTop="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/tvDescriptionTopRatedSeeAll"
         app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
         app:layout_constraintTop_toBottomOf="@id/tvDescriptionTopRatedSeeAll"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        android:layout_marginStart="17dp">
 
         <ImageView
             android:id="@+id/imageView"
@@ -66,6 +67,16 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="5dp"
             android:text="4.5"
+            android:textSize="13sp"
+            android:textColor="@color/white">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvTopRatedSeeAllRateCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="5dp"
+            android:text="(7000)"
             android:textSize="13sp"
             android:textColor="@color/white">
         </TextView>

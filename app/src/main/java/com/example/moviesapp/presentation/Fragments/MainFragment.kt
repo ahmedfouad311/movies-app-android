@@ -1,22 +1,34 @@
+package com.example.moviesapp.presentation.Fragments
 
-
+import PlayingNowAdapter
+import PopularAdapter
+import TopRatedAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.example.moviesapp.R
-import com.example.moviesapp.presentation.Adapters.PopularAdapter
-import com.example.moviesapp.presentation.Adapters.TopRatedAdapter
+import com.example.moviesapp.data.models.PlayingNowResponse
+import com.example.moviesapp.data.models.PopularResponse
+import com.example.moviesapp.data.models.TopRatedResponse
+import com.example.moviesapp.presentation.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainFragment : Fragment() {
     private lateinit var playingNowAdapter: PlayingNowAdapter
     private lateinit var popularAdapter: PopularAdapter
     private lateinit var topRatedAdapter: TopRatedAdapter
+    private val viewModel by viewModel<MainViewModel>()
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,27 +37,58 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
-    // compactPadding (card view)
-    // item decreator (recyclerview scrolling item cut)
-    // view binding
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Playing Now Recycler View
         playingNowAdapter = PlayingNowAdapter()
-        popularAdapter = PopularAdapter()
-        topRatedAdapter = TopRatedAdapter()
+
+        viewModel.getNowPlaying()
+        viewModel.result.observe(viewLifecycleOwner) {
+            if(it is PlayingNowResponse){
+                Log.d(MainFragment::class.java.simpleName, "Success: ${it.results}")
+                playingNowAdapter.setData(it.results)
+                rvPlayingNow.adapter = playingNowAdapter
+            }
+        }
 
         rvPlayingNow.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        rvPlayingNow.adapter = playingNowAdapter
+
+        var snapHelperPlayingNow: SnapHelper = LinearSnapHelper()
+        snapHelperPlayingNow.attachToRecyclerView(rvPlayingNow)
+
+
+        // Popular Recycler View
+        popularAdapter = PopularAdapter()
+        viewModel.getPopular()
+        viewModel.result2.observe(viewLifecycleOwner){
+            if(it is PopularResponse){
+                popularAdapter.setData(it.results)
+                rvPopular.adapter = popularAdapter
+            }
+        }
 
         rvPopular.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        rvPopular.adapter = popularAdapter
+
+
+
+
+        // Top Rated Recycler View
+        topRatedAdapter = TopRatedAdapter()
+        viewModel.getTopRated()
+        viewModel.result3.observe(viewLifecycleOwner){
+            if(it is TopRatedResponse){
+                topRatedAdapter.setData(it.results)
+                rvTopRated.adapter = topRatedAdapter
+            }
+        }
 
         rvTopRated.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-        rvTopRated.adapter = topRatedAdapter
 
 
 
+
+        // See All Button Playing Now
         tvPlayingNowSeeAll.setOnClickListener(View.OnClickListener {
             val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
             val navController = navHostFragment.navController
@@ -54,6 +97,8 @@ class MainFragment : Fragment() {
             navController.navigate(R.id.playingNowSeeAll)
         })
 
+
+        // See All Button Popular Recycler View
         tvPopularSeeAll.setOnClickListener(View.OnClickListener {
             val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
             val navController = navHostFragment.navController
@@ -61,6 +106,8 @@ class MainFragment : Fragment() {
             navController.navigate(R.id.popularSeeAll)
         })
 
+
+        // See All Top Rated Recycler View
         tvTopRatedSeeAll.setOnClickListener(View.OnClickListener {
             val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
             val navController = navHostFragment.navController

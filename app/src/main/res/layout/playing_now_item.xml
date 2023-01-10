@@ -1,54 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:cardUseCompatPadding="true"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/card_background_color">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingHorizontal="10dp"
-            android:paddingVertical="15dp"
-            android:background="@color/card_background_color">
+            android:paddingVertical="15dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvPlayingNowImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageView
+                android:id="@+id/ivPlayingNow"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:cardCornerRadius="10dp">
-
-                <ImageView
-                    android:id="@+id/ivPlayingNow"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:src="@drawable/interstellar"
-                    android:scaleType="fitXY"/>
-
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintEnd_toEndOf="parent"
+                android:scaleType="fitXY"/>
 
 
             <TextView
                 android:id="@+id/tvMovieNamePlayingNow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/cvPlayingNowImage"
+                app:layout_constraintTop_toBottomOf="@id/ivPlayingNow"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="Movie Name"
@@ -56,7 +43,8 @@
                 android:textSize="20sp"
                 android:paddingTop="15dp"
                 android:paddingBottom="5dp"
-                android:paddingHorizontal="10dp"/>
+                android:paddingHorizontal="10dp"
+                android:maxLines="1"/>
 
             <TextView
                 android:id="@+id/tvDescriptionPlayingNow"
@@ -69,16 +57,17 @@
                 android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvMovieNamePlayingNow" />
+                app:layout_constraintTop_toBottomOf="@id/tvMovieNamePlayingNow"
+                android:maxLines="1"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.03"
                 app:layout_constraintStart_toStartOf="parent"
+                android:paddingTop="5dp"
                 app:layout_constraintTop_toBottomOf="@id/tvDescriptionPlayingNow"
                 app:layout_constraintVertical_bias="0.0">
 
@@ -90,10 +79,20 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/tvMovieRatePlayingNow"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="5dp"
                     android:text="4.5"
+                    android:textColor="@color/white">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvMovieRateCountPlayingNow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="5dp"
+                    android:text="(7000)"
                     android:textColor="@color/white">
                 </TextView>
 

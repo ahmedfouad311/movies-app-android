@@ -1,14 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_background_color"
     tools:context=".presentation.Fragments.MovieDetails">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/ivMoviePosterDetails"
+            android:layout_width="match_parent"
+            android:layout_height="490dp"
+            android:src="@drawable/interstellar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:id="@+id/ivBackArrowIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/white_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDetailsMovieName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Interstellar"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivMoviePosterDetails" />
+
+        <ImageView
+            android:id="@+id/bookmark_Iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bookmark"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDetailsMovieName"
+            app:layout_constraintStart_toEndOf="@+id/tvDetailsMovieName"
+            app:layout_constraintTop_toBottomOf="@+id/ivMoviePosterDetails"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="15dp" />
+
+        <ImageView
+            android:id="@+id/ivRateStarMovieDetails"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/tvDetailsMovieName"
+            app:layout_constraintTop_toBottomOf="@id/tvDetailsMovieName"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <TextView
+            android:id="@+id/movieDetail_rating_number_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="(3.98k reviews)"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/ivRateStarMovieDetails"
+            app:layout_constraintTop_toBottomOf="@id/tvDetailsMovieName" />
+
+        <TextView
+            android:id="@+id/tvMovieCategoryDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="4dp"
+            android:text="Movie Category"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/ivRateStarMovieDetails"
+            app:layout_constraintTop_toBottomOf="@id/ivRateStarMovieDetails" />
+
+        <TextView
+            android:id="@+id/tvMovieDateDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="1/4/1999"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="@id/tvMovieCategoryDetails"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieCategoryDetails" />
+
+        <ImageView
+            android:id="@+id/movieDetail_clock_Iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/clock"
+            app:layout_constraintStart_toStartOf="@id/tvMovieDateDetails"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDateDetails" />
+
+        <TextView
+            android:id="@+id/movieDetail_duration_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="2:02"
+            android:textColor="@color/cyan"
+            app:layout_constraintBottom_toBottomOf="@id/movieDetail_clock_Iv"
+            app:layout_constraintStart_toEndOf="@id/movieDetail_clock_Iv"
+            app:layout_constraintTop_toTopOf="@id/movieDetail_clock_Iv" />
+
+        <TextView
+            android:id="@+id/tvMovieOverviewDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Overview"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvDetailsMovieName"
+            app:layout_constraintTop_toBottomOf="@id/movieDetail_duration_Tv" />
+
+        <TextView
+            android:id="@+id/movieDetail_overviewText_Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In Earth's future, a global crop blight and second Dust Bowl are slowly rendering the planet uninhabitable. Professor Brand (Michael Caine), a brilliant NASA physicist, is working on plans to save mankind by transporting Earth's population to a new home via a wormhole. But first, Brand must send former NASA pilot Cooper (Matthew McConaughey) and a team of researchers through the wormhole and across the galaxy to find out which of three planets could be mankind's new home."
+            android:textColor="@color/white"
+            tools:ignore="HardcodedText"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintStart_toStartOf="@id/tvMovieOverviewDetails"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMovieOverviewDetails"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

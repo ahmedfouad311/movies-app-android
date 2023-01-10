@@ -10,4 +10,5 @@
     <color name="see_all_text_color">#00FFFF</color>
     <color name="main_background_color">#1F1F2C</color>
     <color name="card_background_color">#2D2D40</color>
+    <color name="cyan">#81DAED</color>
 </resources>

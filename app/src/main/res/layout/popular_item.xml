@@ -2,17 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/main_background_color">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:cardUseCompatPadding="true"
-        android:background="@color/main_background_color"
+        android:background="@color/card_background_color"
         app:cardCornerRadius="7dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +24,9 @@
 
             <ImageView
                 android:id="@+id/ivPopular"
-                android:layout_width="120dp"
-                android:layout_height="170dp"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/interstellar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ivPopular" />
+                app:layout_constraintTop_toBottomOf="@id/ivPopular"
+                android:maxLines="1"/>
 
             <TextView
                 android:id="@+id/tvDescriptionPopular"
@@ -58,7 +59,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvMovieNamePopular" />
+                app:layout_constraintTop_toBottomOf="@id/tvMovieNamePopular"
+                android:maxLines="1"/>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
@@ -79,10 +81,21 @@
                 </ImageView>
 
                 <TextView
+                    android:id="@+id/tvMovieRatePopular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="3dp"
                     android:text="4.5"
+                    android:textColor="@color/white"
+                    android:textSize="12sp">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tvMovieRateCountPopular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="3dp"
+                    android:text="(7000)"
                     android:textColor="@color/white"
                     android:textSize="12sp">
                 </TextView>
