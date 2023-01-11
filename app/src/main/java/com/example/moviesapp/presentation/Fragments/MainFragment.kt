@@ -19,6 +19,7 @@ import com.example.moviesapp.data.models.PopularResponse
 import com.example.moviesapp.data.models.TopRatedResponse
 import com.example.moviesapp.presentation.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.playing_now_item.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -114,6 +115,13 @@ class MainFragment : Fragment() {
 
             navController.navigate(R.id.topRatedSeeAll)
         })
+
+//        cvPlayingNowCard.setOnClickListener(View.OnClickListener {
+//            val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+//            val navController = navHostFragment.navController
+//
+//            navController.navigate(R.id.movieDetails)
+//        })
     }
 
 

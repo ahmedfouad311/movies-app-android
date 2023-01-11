@@ -18,6 +18,7 @@ class PlayingNowAdapter : RecyclerView.Adapter<PlayingNowAdapter.MyViewHolder>()
             itemView.tvMovieRatePlayingNow.text = movie.vote_average.toString()
             itemView.tvMovieRateCountPlayingNow.text = "(${movie.vote_count})"
             itemView.ivPlayingNow.load("https://image.tmdb.org/t/p/original/${movie.poster_path}")
+//            itemView.ivCardBackground.load("https://image.tmdb.org/t/p/original/${movie.poster_path}")
         }
     }
 

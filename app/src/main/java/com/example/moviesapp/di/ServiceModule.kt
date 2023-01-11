@@ -1,6 +1,7 @@
 package com.example.moviesapp.di
 
 import com.example.moviesapp.BuildConfig
+import com.example.moviesapp.services.CategoryService
 import com.example.moviesapp.services.PlayingNowService
 import com.example.moviesapp.services.PopularService
 import com.example.moviesapp.services.TopRatedService
@@ -26,6 +27,10 @@ val serviceModule = module {
 
     factory {
         getRetrofitBuilder().create(TopRatedService::class.java)
+    }
+
+    factory {
+        getRetrofitBuilder().create(CategoryService::class.java)
     }
 }
 

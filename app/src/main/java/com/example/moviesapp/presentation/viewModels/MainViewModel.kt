@@ -3,6 +3,7 @@ package com.example.moviesapp.presentation.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.moviesapp.data.models.MovieCategoryResponse
 import com.example.moviesapp.data.models.PlayingNowResponse
 import com.example.moviesapp.data.models.PopularResponse
 import com.example.moviesapp.data.models.TopRatedResponse
@@ -84,6 +85,28 @@ class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel()
             m_result3.value = topRatedModel
         },
             { errorThrowable -> m_error3.value = errorThrowable.localizedMessage })
+
+
+    }
+
+    private val m_resultCategory: MutableLiveData<MovieCategoryResponse> by lazy {
+        MutableLiveData()
+    }
+
+    val resultCategory: LiveData<MovieCategoryResponse> = m_resultCategory
+
+    private val m_errorCategory: MutableLiveData<String> by lazy {
+        MutableLiveData()
+    }
+    val errorCategory: LiveData<MovieCategoryResponse> by lazy {
+        MutableLiveData()
+    }
+
+    fun getCategories() {
+        moviesRepository.getCategory(page = 1).subscribe({ categoryModel ->
+            m_resultCategory.value = categoryModel
+        },
+            { errorThrowable -> m_errorCategory.value = errorThrowable.localizedMessage })
 
 
     }
