@@ -3,6 +3,8 @@ package com.example.moviesapp.presentation.Fragments
 import PlayingNowAdapter
 import PopularAdapter
 import TopRatedAdapter
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.example.moviesapp.R
+import com.example.moviesapp.data.models.MovieCategoryResponse
 import com.example.moviesapp.data.models.PlayingNowResponse
 import com.example.moviesapp.data.models.PopularResponse
 import com.example.moviesapp.data.models.TopRatedResponse
@@ -47,7 +50,7 @@ class MainFragment : Fragment() {
         viewModel.getNowPlaying()
         viewModel.result.observe(viewLifecycleOwner) {
             if(it is PlayingNowResponse){
-                Log.d(MainFragment::class.java.simpleName, "Success: ${it.results}")
+                Log.d(MainFragment::class.java.simpleName, "Playing Now: ${it.results}")
                 playingNowAdapter.setData(it.results)
                 rvPlayingNow.adapter = playingNowAdapter
             }
@@ -64,6 +67,7 @@ class MainFragment : Fragment() {
         viewModel.getPopular()
         viewModel.result2.observe(viewLifecycleOwner){
             if(it is PopularResponse){
+                Log.d(MainFragment::class.java.simpleName, "Popular: ${it.results}")
                 popularAdapter.setData(it.results)
                 rvPopular.adapter = popularAdapter
             }
@@ -79,12 +83,26 @@ class MainFragment : Fragment() {
         viewModel.getTopRated()
         viewModel.result3.observe(viewLifecycleOwner){
             if(it is TopRatedResponse){
+                Log.d(MainFragment::class.java.simpleName, "Top Rated: ${it.results}")
                 topRatedAdapter.setData(it.results)
                 rvTopRated.adapter = topRatedAdapter
             }
         }
 
         rvTopRated.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
+
+        viewModel.getCategories()
+        viewModel.resultCategory.observe(viewLifecycleOwner){
+            if(it is MovieCategoryResponse){
+                Log.d(MainFragment::class.java.simpleName, "Categories: ${it.genres}")
+                val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("Categories", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+//                editor.apply{
+//                    putString()
+//                }
+            }
+        }
 
 
 
@@ -115,13 +133,6 @@ class MainFragment : Fragment() {
 
             navController.navigate(R.id.topRatedSeeAll)
         })
-
-//        cvPlayingNowCard.setOnClickListener(View.OnClickListener {
-//            val navHostFragment = activity?.supportFragmentManager?.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
-//            val navController = navHostFragment.navController
-//
-//            navController.navigate(R.id.movieDetails)
-//        })
     }
 
 
