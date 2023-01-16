@@ -15,14 +15,6 @@ import com.example.moviesapp.services.TopRatedService
 
 class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel() {
 
-
-//    init {
-//        val playingNowApi: PlayingNowService = ApplicationNetwork.newInstance().createService(PlayingNowService::class.java)
-//        val popularApi: PopularService = ApplicationNetwork.newInstance().createService(PopularService::class.java)
-//        val topRatedApi: TopRatedService = ApplicationNetwork.newInstance().createService(TopRatedService::class.java)
-//        appRepo = MoviesRepository(nowPlayingService = playingNowApi, popularService = popularApi, topRatedService = topRatedApi)
-//    }
-
     private val m_result: MutableLiveData<PlayingNowResponse> by lazy {
         MutableLiveData()
     }
@@ -54,13 +46,11 @@ class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel()
     private val m_error2: MutableLiveData<String> by lazy {
         MutableLiveData()
     }
-    val error2: LiveData<PopularResponse> by lazy {
-        MutableLiveData()
-    }
+    val error2: LiveData<String> get() = m_error2
 
     fun getPopular() {
         moviesRepository.getPopularFilms(page = 1).subscribe({ popularModel ->
-            m_result2.value = popularModel
+            m_result2.postValue(popularModel)
         },
             { errorThrowable -> m_error2.value = errorThrowable.localizedMessage })
 

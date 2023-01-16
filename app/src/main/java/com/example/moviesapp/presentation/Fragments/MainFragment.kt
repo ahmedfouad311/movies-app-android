@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +23,6 @@ import com.example.moviesapp.data.models.PopularResponse
 import com.example.moviesapp.data.models.TopRatedResponse
 import com.example.moviesapp.presentation.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.playing_now_item.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -31,7 +31,6 @@ class MainFragment : Fragment() {
     private lateinit var popularAdapter: PopularAdapter
     private lateinit var topRatedAdapter: TopRatedAdapter
     private val viewModel by viewModel<MainViewModel>()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,6 +72,9 @@ class MainFragment : Fragment() {
             }
         }
 
+        viewModel.error2.observe(viewLifecycleOwner){
+            Log.d("E", "Error2" + it)
+        }
         rvPopular.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
 
@@ -98,9 +100,13 @@ class MainFragment : Fragment() {
                 Log.d(MainFragment::class.java.simpleName, "Categories: ${it.genres}")
                 val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("Categories", Context.MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
-//                editor.apply{
-//                    putString()
-//                }
+                Log.d(MainFragment::class.java.simpleName, "First Category  " + it.genres[0].id.toString() + " " + it.genres[0].name)
+                editor.apply{
+                    for(i in it.genres){
+                        putString(i.id.toString(), i.name)
+                    }
+                }.apply()
+                Log.d(MainFragment::class.java.simpleName, "Shared Pref" + sharedPreferences.all)
             }
         }
 

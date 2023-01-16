@@ -6,6 +6,8 @@ import com.example.moviesapp.services.PlayingNowService
 import com.example.moviesapp.services.PopularService
 import com.example.moviesapp.services.TopRatedService
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -17,7 +19,7 @@ val serviceModule = module {
         getRetrofitBuilder()
     }
 
-    factory{
+    factory {
         getRetrofitBuilder().create(PlayingNowService::class.java)
     }
 
@@ -38,5 +40,10 @@ fun getRetrofitBuilder(): Retrofit {
     return Retrofit.Builder().baseUrl(BuildConfig.API_BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+        .client(
+            OkHttpClient.Builder()
+                .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build()
+        )
         .build()
 }
