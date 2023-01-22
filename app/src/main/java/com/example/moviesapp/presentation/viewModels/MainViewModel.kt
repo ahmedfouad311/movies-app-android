@@ -15,88 +15,88 @@ import com.example.moviesapp.services.TopRatedService
 
 class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel() {
 
-    private val m_result: MutableLiveData<PlayingNowResponse> by lazy {
+    private val nowPlayingResult: MutableLiveData<PlayingNowResponse> by lazy {
         MutableLiveData()
     }
 
-    val result: LiveData<PlayingNowResponse> = m_result
+    val nowPlayingLiveData: LiveData<PlayingNowResponse> = nowPlayingResult
 
-    private val m_error: MutableLiveData<String> by lazy {
+    private val nowPlayingError: MutableLiveData<String> by lazy {
         MutableLiveData()
     }
-    val error: LiveData<PlayingNowResponse> by lazy {
+    val nowPlayingLiveDataError: LiveData<PlayingNowResponse> by lazy {
         MutableLiveData()
     }
 
     fun getNowPlaying() {
         moviesRepository.getNowPlayingFilms(page = 1).subscribe({ nowPlayingModel ->
-            m_result.value = nowPlayingModel
+            nowPlayingResult.value = nowPlayingModel
         },
-            { errorThrowable -> m_error.value = errorThrowable.localizedMessage })
+            { errorThrowable -> nowPlayingError.value = errorThrowable.localizedMessage })
 
 
     }
 
-    private val m_result2: MutableLiveData<PopularResponse> by lazy {
+    private val popularResult: MutableLiveData<PopularResponse> by lazy {
         MutableLiveData()
     }
 
-    val result2: LiveData<PopularResponse> = m_result2
+    val popularLiveData: LiveData<PopularResponse> = popularResult
 
-    private val m_error2: MutableLiveData<String> by lazy {
+    private val popularError: MutableLiveData<String> by lazy {
         MutableLiveData()
     }
-    val error2: LiveData<String> get() = m_error2
+    val popularLiveDataError: LiveData<String> get() = popularError
 
     fun getPopular() {
         moviesRepository.getPopularFilms(page = 1).subscribe({ popularModel ->
-            m_result2.postValue(popularModel)
+            popularResult.postValue(popularModel)
         },
-            { errorThrowable -> m_error2.value = errorThrowable.localizedMessage })
+            { errorThrowable -> popularError.value = errorThrowable.localizedMessage })
 
 
     }
 
-    private val m_result3: MutableLiveData<TopRatedResponse> by lazy {
+    private val topRatedResult: MutableLiveData<TopRatedResponse> by lazy {
         MutableLiveData()
     }
 
-    val result3: LiveData<TopRatedResponse> = m_result3
+    val topRatedLiveData: LiveData<TopRatedResponse> = topRatedResult
 
-    private val m_error3: MutableLiveData<String> by lazy {
+    private val topRatedError: MutableLiveData<String> by lazy {
         MutableLiveData()
     }
-    val error3: LiveData<TopRatedResponse> by lazy {
+    val topRatedLiveDataError: LiveData<TopRatedResponse> by lazy {
         MutableLiveData()
     }
 
     fun getTopRated() {
         moviesRepository.getTopRatedFilms(page = 1).subscribe({ topRatedModel ->
-            m_result3.value = topRatedModel
+            topRatedResult.value = topRatedModel
         },
-            { errorThrowable -> m_error3.value = errorThrowable.localizedMessage })
+            { errorThrowable -> topRatedError.value = errorThrowable.localizedMessage })
 
 
     }
 
-    private val m_resultCategory: MutableLiveData<MovieCategoryResponse> by lazy {
+    private val categoryResult: MutableLiveData<MovieCategoryResponse> by lazy {
         MutableLiveData()
     }
 
-    val resultCategory: LiveData<MovieCategoryResponse> = m_resultCategory
+    val categoryLiveData: LiveData<MovieCategoryResponse> = categoryResult
 
-    private val m_errorCategory: MutableLiveData<String> by lazy {
+    private val categoryError: MutableLiveData<String> by lazy {
         MutableLiveData()
     }
-    val errorCategory: LiveData<MovieCategoryResponse> by lazy {
+    val categoryErrorLiveData: LiveData<MovieCategoryResponse> by lazy {
         MutableLiveData()
     }
 
     fun getCategories() {
-        moviesRepository.getCategory(page = 1).subscribe({ categoryModel ->
-            m_resultCategory.value = categoryModel
+        moviesRepository.getCategory().subscribe({ categoryModel ->
+            categoryResult.value = categoryModel
         },
-            { errorThrowable -> m_errorCategory.value = errorThrowable.localizedMessage })
+            { errorThrowable -> categoryError.value = errorThrowable.localizedMessage })
 
 
     }

@@ -44,7 +44,6 @@ class MoviesRepository(
 
     fun getCategory(
         apiKey: String = BuildConfig.API_KEY,
-        page: Int
     ): Single<MovieCategoryResponse> = categoryService.getMoviesCategory(apiKey)
         .subscribeOn(ioThread).observeOn(mainThread)
 }

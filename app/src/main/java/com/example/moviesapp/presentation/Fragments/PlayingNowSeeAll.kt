@@ -31,7 +31,7 @@ class PlayingNowSeeAll : Fragment() {
         playingNowSeeAllAdapter = PlayingNowSeeAllAdapter()
 
         viewModel.getNowPlaying()
-        viewModel.result.observe(viewLifecycleOwner){
+        viewModel.nowPlayingLiveData.observe(viewLifecycleOwner){
             if(it is PlayingNowResponse){
                 playingNowSeeAllAdapter.setData(it.results)
                 rvPlayingNowSeeAll.adapter = playingNowSeeAllAdapter

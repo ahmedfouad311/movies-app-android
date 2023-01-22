@@ -32,7 +32,7 @@ class TopRatedSeeAll : Fragment() {
         topRatedSeeAllAdapter = TopRatedSeeAllAdapter()
 
         viewModel.getTopRated()
-        viewModel.result3.observe(viewLifecycleOwner){
+        viewModel.topRatedLiveData.observe(viewLifecycleOwner){
             if(it is TopRatedResponse){
                 topRatedSeeAllAdapter.setData(it.results)
                 rvTopRatedSeeAll.adapter = topRatedSeeAllAdapter

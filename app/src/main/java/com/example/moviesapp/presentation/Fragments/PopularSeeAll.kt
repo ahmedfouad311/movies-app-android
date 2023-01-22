@@ -31,7 +31,7 @@ class PopularSeeAll : Fragment() {
         popularSeeAllAdapter = PopularSeeAllAdapter()
 
         viewModel.getPopular()
-        viewModel.result2.observe(viewLifecycleOwner){
+        viewModel.popularLiveData.observe(viewLifecycleOwner){
             if(it is PopularResponse){
                 popularSeeAllAdapter.setData(it.results)
                 rvPopularSeeAll.adapter = popularSeeAllAdapter

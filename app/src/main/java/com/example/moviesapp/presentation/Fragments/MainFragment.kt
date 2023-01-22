@@ -47,11 +47,17 @@ class MainFragment : Fragment() {
         playingNowAdapter = PlayingNowAdapter()
 
         viewModel.getNowPlaying()
-        viewModel.result.observe(viewLifecycleOwner) {
+        viewModel.nowPlayingLiveData.observe(viewLifecycleOwner) {
             if(it is PlayingNowResponse){
                 Log.d(MainFragment::class.java.simpleName, "Playing Now: ${it.results}")
                 playingNowAdapter.setData(it.results)
                 rvPlayingNow.adapter = playingNowAdapter
+                playingNowAdapter.setOnItemClickListener(object : PlayingNowAdapter.OnItemClickListener{
+                    override fun onItemClick(position: Int) {
+                        Log.d("Click", "Item CLicked")
+                    }
+
+                })
             }
         }
 
@@ -64,7 +70,7 @@ class MainFragment : Fragment() {
         // Popular Recycler View
         popularAdapter = PopularAdapter()
         viewModel.getPopular()
-        viewModel.result2.observe(viewLifecycleOwner){
+        viewModel.popularLiveData.observe(viewLifecycleOwner){
             if(it is PopularResponse){
                 Log.d(MainFragment::class.java.simpleName, "Popular: ${it.results}")
                 popularAdapter.setData(it.results)
@@ -72,7 +78,7 @@ class MainFragment : Fragment() {
             }
         }
 
-        viewModel.error2.observe(viewLifecycleOwner){
+        viewModel.popularLiveDataError.observe(viewLifecycleOwner){
             Log.d("E", "Error2" + it)
         }
         rvPopular.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -83,7 +89,7 @@ class MainFragment : Fragment() {
         // Top Rated Recycler View
         topRatedAdapter = TopRatedAdapter()
         viewModel.getTopRated()
-        viewModel.result3.observe(viewLifecycleOwner){
+        viewModel.topRatedLiveData.observe(viewLifecycleOwner){
             if(it is TopRatedResponse){
                 Log.d(MainFragment::class.java.simpleName, "Top Rated: ${it.results}")
                 topRatedAdapter.setData(it.results)
@@ -95,7 +101,7 @@ class MainFragment : Fragment() {
 
 
         viewModel.getCategories()
-        viewModel.resultCategory.observe(viewLifecycleOwner){
+        viewModel.categoryLiveData.observe(viewLifecycleOwner){
             if(it is MovieCategoryResponse){
                 Log.d(MainFragment::class.java.simpleName, "Categories: ${it.genres}")
                 val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences("Categories", Context.MODE_PRIVATE)
@@ -107,6 +113,15 @@ class MainFragment : Fragment() {
                     }
                 }.apply()
                 Log.d(MainFragment::class.java.simpleName, "Shared Pref" + sharedPreferences.all)
+
+                editor.apply{}
+
+                val sharedPreferences2: SharedPreferences = requireActivity().getSharedPreferences("shared2", Context.MODE_PRIVATE)
+                val editor2 = sharedPreferences2.edit()
+                editor2.apply{
+                    putString("key", "ahmed Fouad")
+                }.apply()
+                Log.d(MainFragment::class.java.simpleName, "Shared pref2" + sharedPreferences2.all)
             }
         }
 
