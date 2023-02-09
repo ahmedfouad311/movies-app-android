@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_background_color"
-    tools:context=".presentation.Fragments.MovieDetails">
+    tools:context=".presentation.Fragments.MovieDetails"
+    android:paddingEnd="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,8 +15,8 @@
         <ImageView
             android:id="@+id/ivMoviePosterDetails"
             android:layout_width="match_parent"
-            android:layout_height="490dp"
-            android:src="@drawable/interstellar"
+            android:layout_height="400dp"
+            android:paddingStart="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -45,17 +46,6 @@
             app:layout_constraintTop_toBottomOf="@+id/ivMoviePosterDetails" />
 
         <ImageView
-            android:id="@+id/bookmark_Iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bookmark"
-            app:layout_constraintBottom_toBottomOf="@+id/tvDetailsMovieName"
-            app:layout_constraintStart_toEndOf="@+id/tvDetailsMovieName"
-            app:layout_constraintTop_toBottomOf="@+id/ivMoviePosterDetails"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="15dp" />
-
-        <ImageView
             android:id="@+id/ivRateStarMovieDetails"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -65,7 +55,7 @@
             app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <TextView
-            android:id="@+id/movieDetail_rating_number_Tv"
+            android:id="@+id/tvMovieDetailRatingNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -106,7 +96,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvMovieDateDetails" />
 
         <TextView
-            android:id="@+id/movieDetail_duration_Tv"
+            android:id="@+id/tvMovieDetailDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -126,20 +116,156 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/tvDetailsMovieName"
-            app:layout_constraintTop_toBottomOf="@id/movieDetail_duration_Tv" />
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailDuration" />
 
         <TextView
-            android:id="@+id/movieDetail_overviewText_Tv"
+            android:id="@+id/tvMovieDetailsOverviewText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="In Earth's future, a global crop blight and second Dust Bowl are slowly rendering the planet uninhabitable. Professor Brand (Michael Caine), a brilliant NASA physicist, is working on plans to save mankind by transporting Earth's population to a new home via a wormhole. But first, Brand must send former NASA pilot Cooper (Matthew McConaughey) and a team of researchers through the wormhole and across the galaxy to find out which of three planets could be mankind's new home."
-            android:textColor="@color/white"
-            tools:ignore="HardcodedText"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            app:layout_constraintStart_toStartOf="@id/tvMovieOverviewDetails"
+            android:text="In Earth's future, a global crop blight and second Dust Bowl are slowly rendering the planet uninhabitable. Professor Brand (Michael Caine), a brilliant NASA physicist, is working on plans to save mankind by transporting Earth's population to a new home via a wormhole. But first, Brand must send former NASA pilot Cooper (Matthew McConaughey) and a team of researchers through the wormhole and across the galaxy to find out which of three planets could be mankind's new home."
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMovieOverviewDetails"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/tvMovieOverviewDetails"
+            app:layout_constraintTop_toBottomOf="@+id/tvMovieOverviewDetails"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvMovieDetailsTrailers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Trailers"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvMovieOverviewDetails"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsOverviewText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTrailers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsTrailers"
+            app:layout_constraintStart_toStartOf="@id/tvMovieDetailsTrailers" />
+
+        <TextView
+            android:id="@+id/tvMovieDetailsReviewsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Reviews"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tvMovieOverviewDetails"
+            app:layout_constraintTop_toBottomOf="@id/rvTrailers" />
+
+        <TextView
+            android:id="@+id/tvMovieDetailsReviewsSeeAllText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tvMovieDetailsReviewsText"
+            app:layout_constraintTop_toBottomOf="@+id/rvTrailers"
+            android:text="See All"
+            android:textSize="17sp"
+            android:textColor="@color/see_all_text_color"
+            android:paddingHorizontal="25dp"
+            android:paddingVertical="16dp"
+            android:gravity="right">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvNoReviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:text="No Reviews"
+            android:textColor="@color/white"
+            android:textSize="30sp">
+        </TextView>
+
+        <ImageView
+            android:id="@+id/ivMovieDetailsReviewsUserPhoto"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/tvMovieDetailsReviewsText"
+            android:src="@drawable/ic_baseline_supervised_user_circle_24"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsText"/>
+
+        <TextView
+            android:id="@+id/tvMovieDetailsReviewsUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="@id/ivMovieDetailsReviewsUserPhoto"
+            app:layout_constraintStart_toEndOf="@id/ivMovieDetailsReviewsUserPhoto"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsText"
+            android:layout_marginStart="12dp"
+            android:visibility="gone"
+            android:text="Ahmed Fouad"/>
+
+        <ImageView
+            android:id="@+id/ivReviewerRate"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/tvMovieDetailsReviewsUsername"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsSeeAllText"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:srcCompat="@android:drawable/btn_star_big_on" />
+
+        <TextView
+            android:id="@+id/tvReviewerRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/ivReviewerRate"
+            app:layout_constraintTop_toBottomOf="@+id/tvMovieDetailsReviewsSeeAllText"
+            android:text="10"
+            android:gravity="right"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
+            android:textColor="@color/white">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvMovieDetailsReviewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1/4/1999"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/tvMovieDetailsReviewsUsername"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsUsername" />
+
+        <TextView
+            android:id="@+id/tvMovieDetailsReviewsUserReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="That moment when they realize that the person who died on the water planet had probably only died minutes ago, that was something I had never considered until I heard them say it. That was a big oh shit moment for me"
+            android:textColor="@color/white"
+            tools:ignore="HardcodedText"
+            android:maxLines="5"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintStart_toStartOf="@+id/tvMovieDetailsReviewsText"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewDate"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

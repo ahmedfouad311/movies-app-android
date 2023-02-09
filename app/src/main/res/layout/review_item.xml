@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/main_background_color"
+    android:paddingHorizontal="10dp">
+
+    <ImageView
+        android:id="@+id/ivMovieDetailsReviewsUserPhotoItem"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_baseline_supervised_user_circle_24"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivMovieDetailsReviewsUserPhotoItem2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/ic_baseline_supervised_user_circle_24"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tvMovieDetailsReviewsUsernameItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivMovieDetailsReviewsUserPhotoItem"
+        android:layout_marginStart="12dp"
+        android:text="Ahmed Fouad"/>
+
+    <ImageView
+        android:id="@+id/ivReviewerRateItem"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="20sp"
+        app:layout_constraintStart_toStartOf="@id/tvMovieDetailsReviewsUsernameItem"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <TextView
+        android:id="@+id/tvReviewerRateItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        app:layout_constraintStart_toEndOf="@+id/ivReviewerRateItem"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="10"
+        android:gravity="right"
+        android:layout_marginTop="20sp"
+        android:textColor="@color/white">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvMovieDetailsReviewDateItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1/4/1999"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/tvMovieDetailsReviewsUsernameItem"
+        app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsUsernameItem" />
+
+    <TextView
+        android:id="@+id/tvMovieDetailsReviewsUserReviewItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="That moment when they realize that the person who died on the water planet had probably only died minutes ago, that was something I had never considered until I heard them say it. That was a big oh shit moment for me"
+        android:textColor="@color/white"
+        tools:ignore="HardcodedText"
+        android:maxLines="10"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewDateItem"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvMovieDetailsReviewsUserReviewItem"
+        android:background="@android:color/darker_gray"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

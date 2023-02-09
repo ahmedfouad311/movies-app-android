@@ -1,10 +1,7 @@
 package com.example.moviesapp.di
 
 import com.example.moviesapp.BuildConfig
-import com.example.moviesapp.services.CategoryService
-import com.example.moviesapp.services.PlayingNowService
-import com.example.moviesapp.services.PopularService
-import com.example.moviesapp.services.TopRatedService
+import com.example.moviesapp.services.*
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,6 +30,18 @@ val serviceModule = module {
 
     factory {
         getRetrofitBuilder().create(CategoryService::class.java)
+    }
+
+    factory {
+        getRetrofitBuilder().create(DetailsService::class.java)
+    }
+
+    factory {
+        getRetrofitBuilder().create(TrailersService::class.java)
+    }
+
+    factory {
+        getRetrofitBuilder().create(ReviewsService::class.java)
     }
 }
 

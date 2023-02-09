@@ -52,5 +52,21 @@
         android:id="@+id/movieDetails"
         android:name="com.example.moviesapp.presentation.Fragments.MovieDetails"
         android:label="fragment_movie_details"
-        tools:layout="@layout/fragment_movie_details" />
+        tools:layout="@layout/fragment_movie_details" >
+        <argument
+            android:name="movieId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_movieDetails_to_movieReviews"
+            app:destination="@id/movieReviews" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieReviews"
+        android:name="com.example.moviesapp.presentation.Fragments.MovieReviews"
+        android:label="fragment_movie_reviews"
+        tools:layout="@layout/fragment_movie_reviews" >
+        <argument
+            android:name="movieId"
+            app:argType="long" />
+    </fragment>
 </navigation>

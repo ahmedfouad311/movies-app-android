@@ -10,16 +10,19 @@ import com.example.moviesapp.data.models.PopularResponse
 import kotlinx.android.synthetic.main.playing_now_item.view.*
 import kotlinx.android.synthetic.main.popular_item.view.*
 
-class PopularAdapter: RecyclerView.Adapter<PopularAdapter.MyViewHolder>() {
+class PopularAdapter(val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.Adapter<PopularAdapter.MyViewHolder>() {
     private var popularMovies = listOf<PopularResponse.Result>()
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View, val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.ViewHolder(itemView) {
         fun bindData(movie: PopularResponse.Result){
             itemView.tvMovieNamePopular.text = movie.original_title
             itemView.tvDescriptionPopular.text = movie.release_date
             itemView.tvMovieRatePopular.text = movie.vote_average.toString()
             itemView.tvMovieRateCountPopular.text = "(${movie.vote_count})"
             itemView.ivPopular.load("https://image.tmdb.org/t/p/original/${movie.poster_path}")
+            itemView.cvPopularCard.setOnClickListener(){
+                movieItemCallBack(movie.id.toLong())
+            }
 
         }
     }
@@ -34,7 +37,7 @@ class PopularAdapter: RecyclerView.Adapter<PopularAdapter.MyViewHolder>() {
             parent,
             false
         )
-        return MyViewHolder(view)
+        return MyViewHolder(view, movieItemCallBack)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
@@ -42,6 +45,6 @@ class PopularAdapter: RecyclerView.Adapter<PopularAdapter.MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return 8
+        return popularMovies.size / 2
     }
 }
