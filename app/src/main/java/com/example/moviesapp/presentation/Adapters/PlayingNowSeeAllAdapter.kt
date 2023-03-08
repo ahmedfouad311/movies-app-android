@@ -7,17 +7,21 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.moviesapp.R
 import com.example.moviesapp.data.models.PlayingNowResponse
+import kotlinx.android.synthetic.main.playing_now_item.view.*
 import kotlinx.android.synthetic.main.playing_now_see_all_item.view.*
 
-class PlayingNowSeeAllAdapter: RecyclerView.Adapter<PlayingNowSeeAllAdapter.MyViewHolder>() {
+class PlayingNowSeeAllAdapter(val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.Adapter<PlayingNowSeeAllAdapter.MyViewHolder>() {
     private var playingNowSeeAllMovies = listOf<PlayingNowResponse.Result>()
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView: View, val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.ViewHolder(itemView){
         fun bindData(movie: PlayingNowResponse.Result){
             itemView.tvMovieNamePlayingNowSeeAll.text = movie.original_title
             itemView.tvDescriptionPlayingNowSeeAll.text = movie.release_date
             itemView.tvPlayingNowSeeAllRate.text = movie.vote_average.toString()
             itemView.tvPlayingNowSeeAllRateCount.text = "(${movie.vote_count})"
             itemView.ivPlayingNowSeeAll.load("https://image.tmdb.org/t/p/original/${movie.poster_path}")
+            itemView.cvPlayingNowSeeAllCard.setOnClickListener(){
+                movieItemCallBack(movie.id.toLong())
+            }
         }
     }
 
@@ -32,7 +36,7 @@ class PlayingNowSeeAllAdapter: RecyclerView.Adapter<PlayingNowSeeAllAdapter.MyVi
             false
         )
 
-        return MyViewHolder(view)
+        return MyViewHolder(view, movieItemCallBack)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

@@ -1,86 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/main_background_color">
+    android:background="@color/main_background_color"
+    android:id="@+id/cvTopRatedSeeAllCard">
 
-    <ImageView
-        android:id="@+id/ivTopRatedSeeAll"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/interstellar"
-        android:scaleType="fitXY"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="15dp">
-    </ImageView>
-
-    <TextView
-        android:id="@+id/tvMovieNameTopRatedSeeAll"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
-        android:layout_marginTop="30dp"
-        android:text="Movie Name"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="15sp"
-        android:layout_marginStart="15dp">
-    </TextView>
-
-    <TextView
-        android:id="@+id/tvDescriptionTopRatedSeeAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
-        app:layout_constraintTop_toBottomOf="@id/tvMovieNameTopRatedSeeAll"
-        android:text="Description"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="5dp">
-    </TextView>
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
-        app:layout_constraintTop_toBottomOf="@id/tvDescriptionTopRatedSeeAll"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginStart="17dp">
+        android:background="@color/main_background_color">
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            app:srcCompat="@android:drawable/btn_star_big_on">
+            android:id="@+id/ivTopRatedSeeAll"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/interstellar"
+            android:scaleType="fitXY"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="15dp">
         </ImageView>
 
         <TextView
-            android:id="@+id/tvTopRatedSeeAllRate"
-            android:layout_width="match_parent"
+            android:id="@+id/tvMovieNameTopRatedSeeAll"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
-            android:text="4.5"
-            android:textSize="13sp"
-            android:textColor="@color/white">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
+            android:layout_marginTop="30dp"
+            android:text="Movie Name"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginStart="15dp">
         </TextView>
 
         <TextView
-            android:id="@+id/tvTopRatedSeeAllRateCount"
-            android:layout_width="match_parent"
+            android:id="@+id/tvDescriptionTopRatedSeeAll"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
-            android:text="(7000)"
+            app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieNameTopRatedSeeAll"
+            android:text="Description"
+            android:textColor="@color/white"
             android:textSize="13sp"
-            android:textColor="@color/white">
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="5dp">
         </TextView>
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionTopRatedSeeAll"
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_marginStart="17dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                app:srcCompat="@android:drawable/btn_star_big_on">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tvTopRatedSeeAllRate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="5dp"
+                android:text="4.5"
+                android:textSize="13sp"
+                android:textColor="@color/white">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tvTopRatedSeeAllRateCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="5dp"
+                android:text="(7000)"
+                android:textSize="13sp"
+                android:textColor="@color/white">
+            </TextView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

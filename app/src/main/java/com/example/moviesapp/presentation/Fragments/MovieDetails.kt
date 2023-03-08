@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.moviesapp.MainActivity
 import com.example.moviesapp.R
+import com.example.moviesapp.data.models.MovieCastResponse
 import com.example.moviesapp.data.models.MovieDetailsResponse
 import com.example.moviesapp.data.models.MovieReviewsResponse
 import com.example.moviesapp.data.models.MovieTrailersResponse
+import com.example.moviesapp.presentation.Adapters.CastAdapter
 import com.example.moviesapp.presentation.Adapters.TrailersAdapter
 import com.example.moviesapp.presentation.viewModels.DetailsViewModel
 import com.example.moviesapp.presentation.viewModels.MainViewModel
@@ -35,6 +37,7 @@ class MovieDetails : Fragment(), Videos {
     private val reviewsViewModel by viewModel<ReviewsViewModel>()
     private val args by navArgs<MovieDetailsArgs>()
     private lateinit var trailersAdapter: TrailersAdapter
+    private lateinit var castAdapter: CastAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,25 +70,23 @@ class MovieDetails : Fragment(), Videos {
         }
 
 
-//        trailersAdapter = TrailersAdapter()
-//        rvTrailers.adapter = trailersAdapter
-//        viewModel.getMovieTrailers(args.movieId)
-//        viewModel.movieTrailersLiveData.observe(viewLifecycleOwner){
-//            if(it is MovieTrailersResponse){
-//                Log.d("Trailers", it.results.toString())
-//                for(i in it.results){
-//                    playVideos(i.key)
-//                }
-////                cvTrailer.setOnClickListener(){
-////                    Log.d("Click", "Item Clicked")
-////                    val urlIntent = Intent(Intent.ACTION_VIEW)
-////                    urlIntent.data = Uri.parse("https://www.youtube.com/watch?v=cqGjhVJWtEg")
-////                    requireActivity().startActivity(urlIntent)
-////                }
-//            }
-//        }
-//        rvTrailers.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        trailersAdapter = TrailersAdapter(movieItemCallBack = {
+            val urlIntent = Intent(Intent.ACTION_VIEW)
+            urlIntent.data = Uri.parse("https://www.youtube.com/watch?v=${it}")
+            requireActivity().startActivity(urlIntent)
+        })
+        viewModel.getMovieTrailers(args.movieId)
+        viewModel.movieTrailersLiveData.observe(viewLifecycleOwner){
+            if(it is MovieTrailersResponse){
+                Log.d("Trailers", it.results.toString())
+                trailersAdapter.setData(it.results)
+                rvTrailers.adapter = trailersAdapter
+            }
+        }
+        rvTrailers.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 
+
+        // Reviews
         reviewsViewModel.getMovieReviews(args.movieId)
         reviewsViewModel.movieReviewsLiveData.observe(viewLifecycleOwner){
             if(it.results.isNotEmpty()){
@@ -116,6 +117,27 @@ class MovieDetails : Fragment(), Videos {
 
         tvMovieDetailsReviewsSeeAllText.setOnClickListener(){
             findNavController().navigate(MovieDetailsDirections.actionMovieDetailsToMovieReviews(args.movieId))
+        }
+
+
+        // Cast
+        castAdapter = CastAdapter()
+        viewModel.getMovieCast(args.movieId)
+        viewModel.movieCastLiveData.observe(viewLifecycleOwner){
+            Log.d("Success", "Cast Data ${it.cast}")
+            if(it.cast.isNotEmpty()){
+                rvCast.visibility = View.VISIBLE
+                castAdapter.setData(it.cast)
+                rvCast.adapter = castAdapter
+                rvCast.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+            } else {
+                rvCast.visibility = View.GONE
+                tvNoCasts.visibility = View.VISIBLE
+            }
+        }
+
+        viewModel.movieCastLiveDataError.observe(viewLifecycleOwner){
+            Log.d("Fail", "Cast Error $it")
         }
     }
 

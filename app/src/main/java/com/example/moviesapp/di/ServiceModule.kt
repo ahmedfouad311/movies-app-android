@@ -43,6 +43,10 @@ val serviceModule = module {
     factory {
         getRetrofitBuilder().create(ReviewsService::class.java)
     }
+
+    factory {
+        getRetrofitBuilder().create(CastService::class.java)
+    }
 }
 
 fun getRetrofitBuilder(): Retrofit {

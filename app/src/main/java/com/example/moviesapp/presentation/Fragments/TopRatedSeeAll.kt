@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.R
 import com.example.moviesapp.data.models.TopRatedResponse
@@ -29,7 +30,9 @@ class TopRatedSeeAll : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        topRatedSeeAllAdapter = TopRatedSeeAllAdapter()
+        topRatedSeeAllAdapter = TopRatedSeeAllAdapter(movieItemCallBack = {
+            findNavController().navigate(TopRatedSeeAllDirections.actionTopRatedSeeAllToMovieDetails(it))
+        })
 
         viewModel.getTopRated()
         viewModel.topRatedLiveData.observe(viewLifecycleOwner){

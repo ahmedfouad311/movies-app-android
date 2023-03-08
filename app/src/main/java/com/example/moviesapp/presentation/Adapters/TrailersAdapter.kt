@@ -15,13 +15,13 @@ import com.example.moviesapp.utils.Videos
 import kotlinx.android.synthetic.main.playing_now_item.view.*
 import kotlinx.android.synthetic.main.trailers_item.view.*
 
-class TrailersAdapter(private val videos: Videos): RecyclerView.Adapter<TrailersAdapter.MyViewHolder>() {
+class TrailersAdapter(val movieItemCallBack: (videoKey: String) -> Unit): RecyclerView.Adapter<TrailersAdapter.MyViewHolder>() {
     private var trailerList = listOf<MovieTrailersResponse.Result>()
 
-    class MyViewHolder(itemView: View, private val videos: Videos): RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View, val movieItemCallBack: (videoKey: String) -> Unit): RecyclerView.ViewHolder(itemView) {
         fun bindData(trailer: MovieTrailersResponse.Result) {
-            itemView.cvPlayingNowCard.setOnClickListener(){
-                videos.playVideos(trailer.key)
+            itemView.cvTrailer.setOnClickListener(){
+                movieItemCallBack(trailer.key)
             }
         }
     }
@@ -36,7 +36,7 @@ class TrailersAdapter(private val videos: Videos): RecyclerView.Adapter<Trailers
                 parent,
                 false
             )
-        return MyViewHolder(view, videos)
+        return MyViewHolder(view, movieItemCallBack)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

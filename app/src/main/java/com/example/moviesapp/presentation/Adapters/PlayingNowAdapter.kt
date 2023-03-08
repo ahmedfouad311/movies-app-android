@@ -18,6 +18,7 @@ class PlayingNowAdapter(val movieItemCallBack: (movieId: Long) -> Unit) : Recycl
         fun bindData(movie: PlayingNowResponse.Result) {
             itemView.tvMovieNamePlayingNow.text = movie.original_title
             itemView.tvMovieRatePlayingNow.text = movie.vote_average.toString()
+            itemView.tvDescriptionPlayingNow.text = movie.release_date
             itemView.tvMovieRateCountPlayingNow.text = "(${movie.vote_count})"
             itemView.ivPlayingNow.load("https://image.tmdb.org/t/p/original/${movie.poster_path}")
             itemView.cvPlayingNowCard.setOnClickListener(){

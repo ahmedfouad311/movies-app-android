@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/main_background_color"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/ivCastPic"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tvCastRealName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/ivCastPic"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Ahmed Fouad"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:layout_marginStart="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/tvCastMovieName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvCastRealName"
+        app:layout_constraintStart_toStartOf="@id/tvCastRealName"
+        android:text="Spider Man"
+        android:textColor="@color/white"
+        android:textSize="12sp">
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

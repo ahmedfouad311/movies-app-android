@@ -10,16 +10,19 @@ import com.example.moviesapp.data.models.PopularResponse
 import kotlinx.android.synthetic.main.popular_item.view.*
 import kotlinx.android.synthetic.main.popular_see_all_item.view.*
 
-class PopularSeeAllAdapter: RecyclerView.Adapter<PopularSeeAllAdapter.MyViewHolder>() {
+class PopularSeeAllAdapter(val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.Adapter<PopularSeeAllAdapter.MyViewHolder>() {
     private var popularSeeAllMovies = listOf<PopularResponse.Result>()
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class MyViewHolder(itemView: View, val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.ViewHolder(itemView) {
         fun bindData(movie: PopularResponse.Result){
             itemView.tvMovieNamePopularSeeAll.text = movie.original_title
             itemView.tvDescriptionPopularSeeAll.text = movie.release_date
             itemView.tvPopularSeeAllRate.text = movie.vote_average.toString()
             itemView.tvPopularSeeAllRateCount.text = "(${movie.vote_count})"
             itemView.ivPopularSeeAll.load("https://image.tmdb.org/t/p/original/${movie.poster_path}")
+            itemView.cvPopularSeeAllCard.setOnClickListener(){
+                movieItemCallBack(movie.id.toLong())
+            }
         }
     }
 
@@ -33,7 +36,7 @@ class PopularSeeAllAdapter: RecyclerView.Adapter<PopularSeeAllAdapter.MyViewHold
             parent,
             false
         )
-        return MyViewHolder(view)
+        return MyViewHolder(view, movieItemCallBack)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

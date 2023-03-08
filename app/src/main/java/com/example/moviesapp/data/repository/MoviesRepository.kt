@@ -21,6 +21,7 @@ class MoviesRepository(
     private val detailsService: DetailsService,
     private val trailersService: TrailersService,
     private val reviewsService: ReviewsService,
+    private val castService: CastService,
     private val ioThread: Scheduler,
     private val mainThread: Scheduler,
     private val sharedPreferences: SharedPreferences
@@ -77,6 +78,11 @@ class MoviesRepository(
         page: Int
     ): Single<MovieReviewsResponse> = reviewsService.getMovieReviews(movie_id = movieId, apiKey = apiKey, page = page)
         .subscribeOn(ioThread).observeOn(mainThread)
+
+    fun getCast(
+        apiKey: String = BuildConfig.API_KEY,
+        movieId: Long,
+    ): Single<MovieCastResponse> = castService.getMovieCast(movie_id = movieId, apiKey = apiKey)
 }
 
 

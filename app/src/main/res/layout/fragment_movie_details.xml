@@ -200,7 +200,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20sp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@+id/tvMovieDetailsReviewsText"
             android:src="@drawable/ic_baseline_supervised_user_circle_24"
             app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsText"/>
@@ -214,7 +214,7 @@
             app:layout_constraintStart_toEndOf="@id/ivMovieDetailsReviewsUserPhoto"
             app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsText"
             android:layout_marginStart="12dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:text="Ahmed Fouad"/>
 
         <ImageView
@@ -225,7 +225,7 @@
             app:layout_constraintStart_toStartOf="@id/tvMovieDetailsReviewsUsername"
             app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsSeeAllText"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"
+            android:visibility="visible"
             app:srcCompat="@android:drawable/btn_star_big_on" />
 
         <TextView
@@ -238,7 +238,7 @@
             android:text="10"
             android:gravity="right"
             android:layout_marginTop="5dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:textColor="@color/white">
         </TextView>
 
@@ -248,7 +248,7 @@
             android:layout_height="wrap_content"
             android:text="1/4/1999"
             android:textColor="@color/white"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintStart_toStartOf="@id/tvMovieDetailsReviewsUsername"
             app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsUsername" />
 
@@ -264,8 +264,47 @@
             android:paddingVertical="10dp"
             app:layout_constraintStart_toStartOf="@+id/tvMovieDetailsReviewsText"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewDate"/>
+
+        <TextView
+            android:id="@+id/tvCast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Casts"
+            app:layout_constraintStart_toStartOf="@+id/tvMovieOverviewDetails"
+            app:layout_constraintTop_toBottomOf="@+id/tvMovieDetailsReviewsUserReview"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp">
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvCast"
+            app:layout_constraintTop_toBottomOf="@id/tvCast"
+            android:visibility="visible">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/tvNoCasts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tvCast"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="No Casts Available"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:visibility="gone">
+        </TextView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
