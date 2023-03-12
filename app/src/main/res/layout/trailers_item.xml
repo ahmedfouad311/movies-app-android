@@ -17,17 +17,14 @@
        app:cardBackgroundColor="@color/card_background_color"
        app:cardCornerRadius="7dp">
 
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Watch \nTrailer"
-          android:textColor="@color/white"
-          android:textStyle="bold"
-          android:textSize="40sp"
-          android:paddingTop="8dp"
-          android:paddingHorizontal="10dp"
-          android:paddingBottom="2dp">
-      </TextView>
+      <ImageView
+          android:id="@+id/trailer_Iv"
+          android:layout_width="150dp"
+          android:layout_height="100dp"
+          android:layout_margin="8dp"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:srcCompat="@drawable/baseline_video_library_24" />
    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
