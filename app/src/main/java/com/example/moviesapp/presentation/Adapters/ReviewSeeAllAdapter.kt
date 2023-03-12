@@ -14,14 +14,7 @@ class ReviewSeeAllAdapter: RecyclerView.Adapter<ReviewSeeAllAdapter.MyViewHolder
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bindData(review: MovieReviewsResponse.Result){
             itemView.tvMovieDetailsReviewsUsernameItem.text = review.author
-            if(review.author_details.avatar_path == null){
-                itemView.ivMovieDetailsReviewsUserPhotoItem2.visibility = View.VISIBLE
-                itemView.ivMovieDetailsReviewsUserPhotoItem.visibility = View.GONE
-            } else{
-                itemView.ivMovieDetailsReviewsUserPhotoItem.visibility = View.VISIBLE
-                itemView.ivMovieDetailsReviewsUserPhotoItem.load("https://image.tmdb.org/t/p/original/${review.author_details.avatar_path}")
-                itemView.ivMovieDetailsReviewsUserPhotoItem2.visibility = View.GONE
-            }
+            itemView.ivMovieDetailsReviewsUserPhotoItem.load("https://image.tmdb.org/t/p/original/${review.author_details.avatar_path}")
             itemView.tvReviewerRateItem.text = review.author_details.rating.toString()
             itemView.tvMovieDetailsReviewDateItem.text = review.created_at
             itemView.tvMovieDetailsReviewsUserReviewItem.text = review.content

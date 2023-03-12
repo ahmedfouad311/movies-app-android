@@ -4,9 +4,9 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class MovieCastResponse(
-    val cast: List<Cast>,
+    val cast: List<Cast>?,
     val crew: List<Crew>,
-    val id: Int
+    val id: Int?
 ) {
 
     @JsonClass(generateAdapter = true)

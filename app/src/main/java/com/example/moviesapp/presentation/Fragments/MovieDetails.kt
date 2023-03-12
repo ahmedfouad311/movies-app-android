@@ -109,6 +109,12 @@ class MovieDetails : Fragment(), Videos {
 
             } else{
                 tvNoReviews.visibility = View.VISIBLE
+                tvMovieDetailsReviewsUsername.visibility = View.GONE
+                tvMovieDetailsReviewDate.visibility = View.GONE
+                ivReviewerRate.visibility = View.GONE
+                tvMovieDetailsReviewsUserReview.visibility = View.GONE
+                tvReviewerRate.visibility = View.GONE
+                ivMovieDetailsReviewsUserPhoto.visibility = View.GONE
             }
         }
         reviewsViewModel.movieReviewsLiveDataError.observe(viewLifecycleOwner){
@@ -125,7 +131,7 @@ class MovieDetails : Fragment(), Videos {
         viewModel.getMovieCast(args.movieId)
         viewModel.movieCastLiveData.observe(viewLifecycleOwner){
             Log.d("Success", "Cast Data ${it.cast}")
-            if(it.cast.isNotEmpty()){
+            if(it.cast!!.isNotEmpty()){
                 rvCast.visibility = View.VISIBLE
                 castAdapter.setData(it.cast)
                 rvCast.adapter = castAdapter

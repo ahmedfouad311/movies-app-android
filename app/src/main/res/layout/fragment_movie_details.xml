@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:text="Interstellar"
+            android:text="Movie Name"
             android:textColor="@color/white"
             android:textSize="28sp"
             android:textStyle="bold"
@@ -86,26 +86,6 @@
             app:layout_constraintStart_toStartOf="@id/tvMovieCategoryDetails"
             app:layout_constraintTop_toBottomOf="@id/tvMovieCategoryDetails" />
 
-        <ImageView
-            android:id="@+id/movieDetail_clock_Iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/clock"
-            app:layout_constraintStart_toStartOf="@id/tvMovieDateDetails"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieDateDetails" />
-
-        <TextView
-            android:id="@+id/tvMovieDetailDuration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="2:02"
-            android:textColor="@color/cyan"
-            app:layout_constraintBottom_toBottomOf="@id/movieDetail_clock_Iv"
-            app:layout_constraintStart_toEndOf="@id/movieDetail_clock_Iv"
-            app:layout_constraintTop_toTopOf="@id/movieDetail_clock_Iv" />
-
         <TextView
             android:id="@+id/tvMovieOverviewDetails"
             android:layout_width="wrap_content"
@@ -116,7 +96,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/tvDetailsMovieName"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieDetailDuration" />
+            app:layout_constraintTop_toBottomOf="@+id/tvMovieDateDetails" />
 
         <TextView
             android:id="@+id/tvMovieDetailsOverviewText"
@@ -124,7 +104,7 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
-            android:text="In Earth's future, a global crop blight and second Dust Bowl are slowly rendering the planet uninhabitable. Professor Brand (Michael Caine), a brilliant NASA physicist, is working on plans to save mankind by transporting Earth's population to a new home via a wormhole. But first, Brand must send former NASA pilot Cooper (Matthew McConaughey) and a team of researchers through the wormhole and across the galaxy to find out which of three planets could be mankind's new home."
+            android:text="Overview"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -215,7 +195,7 @@
             app:layout_constraintTop_toBottomOf="@id/tvMovieDetailsReviewsText"
             android:layout_marginStart="12dp"
             android:visibility="visible"
-            android:text="Ahmed Fouad"/>
+            android:text="Reviewer Name"/>
 
         <ImageView
             android:id="@+id/ivReviewerRate"
@@ -256,7 +236,7 @@
             android:id="@+id/tvMovieDetailsReviewsUserReview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="That moment when they realize that the person who died on the water planet had probably only died minutes ago, that was something I had never considered until I heard them say it. That was a big oh shit moment for me"
+            android:text="Review"
             android:textColor="@color/white"
             tools:ignore="HardcodedText"
             android:maxLines="5"
@@ -277,7 +257,8 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="12dp"
+            android:visibility="gone">
         </TextView>
 
         <androidx.recyclerview.widget.RecyclerView
