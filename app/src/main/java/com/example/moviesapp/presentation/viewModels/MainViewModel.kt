@@ -3,17 +3,20 @@ package com.example.moviesapp.presentation.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.moviesapp.data.filteration.MovieFilter
 import com.example.moviesapp.data.models.MovieCategoryResponse
 import com.example.moviesapp.data.models.PlayingNowResponse
 import com.example.moviesapp.data.models.PopularResponse
 import com.example.moviesapp.data.models.TopRatedResponse
 import com.example.moviesapp.data.repository.MoviesRepository
-import com.example.moviesapp.network.ApplicationNetwork
-import com.example.moviesapp.services.PlayingNowService
-import com.example.moviesapp.services.PopularService
-import com.example.moviesapp.services.TopRatedService
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 
-class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel() {
+class MainViewModel(private val moviesRepository: MoviesRepository) : ViewModel() {
+
+    private val compositeDisposable by lazy {
+        CompositeDisposable()
+    }
 
     private val nowPlayingResult: MutableLiveData<PlayingNowResponse> by lazy {
         MutableLiveData()
@@ -31,10 +34,14 @@ class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel()
     fun getNowPlaying() {
         moviesRepository.getNowPlayingFilms(page = 1).subscribe({ nowPlayingModel ->
             nowPlayingResult.value = nowPlayingModel
-        },
-            { errorThrowable -> nowPlayingError.value = errorThrowable.localizedMessage })
+        }, { errorThrowable ->
+            nowPlayingError.value = errorThrowable.localizedMessage
+        }).addTo(compositeDisposable)
 
+    }
 
+    fun Disposable.addTo(compositeDisposable: CompositeDisposable) {
+        compositeDisposable.add(this)
     }
 
     private val popularResult: MutableLiveData<PopularResponse> by lazy {
@@ -53,6 +60,7 @@ class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel()
             popularResult.postValue(popularModel)
         },
             { errorThrowable -> popularError.value = errorThrowable.localizedMessage })
+            .addTo(compositeDisposable)
 
 
     }
@@ -70,13 +78,19 @@ class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel()
         MutableLiveData()
     }
 
-    fun getTopRated() {
+    fun getData(type: MovieFilter) {
+        when (type) {
+            MovieFilter.POPULAR -> getPopular()
+            MovieFilter.TOP_RATED -> getTopRated()
+            MovieFilter.NOW_PLAYING -> getNowPlaying()
+        }
+    }
+
+    private fun getTopRated() {
         moviesRepository.getTopRatedFilms(page = 1).subscribe({ topRatedModel ->
             topRatedResult.value = topRatedModel
-        },
-            { errorThrowable -> topRatedError.value = errorThrowable.localizedMessage })
-
-
+        }, { errorThrowable -> topRatedError.value = errorThrowable.localizedMessage })
+            .addTo(compositeDisposable)
     }
 
     private val categoryResult: MutableLiveData<MovieCategoryResponse> by lazy {
@@ -97,7 +111,13 @@ class MainViewModel(private val moviesRepository: MoviesRepository): ViewModel()
             categoryResult.value = categoryModel
         },
             { errorThrowable -> categoryError.value = errorThrowable.localizedMessage })
+            .addTo(compositeDisposable)
 
 
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.dispose()
     }
 }

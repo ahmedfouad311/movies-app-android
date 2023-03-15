@@ -3,15 +3,12 @@ package com.example.moviesapp.presentation.Fragments
 import PlayingNowAdapter
 import PopularAdapter
 import TopRatedAdapter
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
@@ -24,7 +21,6 @@ import com.example.moviesapp.data.models.TopRatedResponse
 import com.example.moviesapp.presentation.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.FieldPosition
 
 
 class MainFragment : Fragment() {
@@ -89,7 +85,7 @@ class MainFragment : Fragment() {
         topRatedAdapter = TopRatedAdapter(movieItemCallBack = {
             findNavController().navigate(MainFragmentDirections.actionMainFragmentToMovieDetails(it))
         })
-        viewModel.getTopRated()
+        viewModel.getData()
         viewModel.topRatedLiveData.observe(viewLifecycleOwner){
             if(it is TopRatedResponse){
                 Log.d(MainFragment::class.java.simpleName, "Top Rated: ${it.results}")
