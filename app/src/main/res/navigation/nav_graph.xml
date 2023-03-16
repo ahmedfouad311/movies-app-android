@@ -4,53 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
-
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.moviesapp.presentation.Fragments.MainFragment"
+        android:name="com.example.moviesapp.presentation.fragments.MainFragment"
         android:label="MainFragment" >
-        <action
-            android:id="@+id/action_mainFragment_to_playingNowSeeAll"
-            app:destination="@id/playingNowSeeAll" />
-        <action
-            android:id="@+id/action_mainFragment_to_popularSeeAll"
-            app:destination="@id/popularSeeAll" />
-        <action
-            android:id="@+id/action_mainFragment_to_topRatedSeeAll"
-            app:destination="@id/topRatedSeeAll" />
         <action
             android:id="@+id/action_mainFragment_to_movieDetails"
             app:destination="@id/movieDetails" />
-    </fragment>
-    <fragment
-        android:id="@+id/playingNowSeeAll"
-        android:name="com.example.moviesapp.presentation.Fragments.PlayingNowSeeAll"
-        android:label="PlayingNowSeeAll" >
         <action
-            android:id="@+id/action_playingNowSeeAll_to_movieDetails"
-            app:destination="@id/movieDetails" />
-    </fragment>
-    <fragment
-        android:id="@+id/popularSeeAll"
-        android:name="com.example.moviesapp.presentation.Fragments.PopularSeeAll"
-        android:label="fragment_popular_see_all"
-        tools:layout="@layout/fragment_popular_see_all" >
-        <action
-            android:id="@+id/action_popularSeeAll_to_movieDetails"
-            app:destination="@id/movieDetails" />
-    </fragment>
-    <fragment
-        android:id="@+id/topRatedSeeAll"
-        android:name="com.example.moviesapp.presentation.Fragments.TopRatedSeeAll"
-        android:label="fragment_top_rated_see_all"
-        tools:layout="@layout/fragment_top_rated_see_all" >
-        <action
-            android:id="@+id/action_topRatedSeeAll_to_movieDetails"
-            app:destination="@id/movieDetails" />
+            android:id="@+id/action_mainFragment_to_moviesSeeAll"
+            app:destination="@id/moviesSeeAll" />
     </fragment>
     <fragment
         android:id="@+id/movieDetails"
-        android:name="com.example.moviesapp.presentation.Fragments.MovieDetails"
+        android:name="com.example.moviesapp.presentation.fragments.MovieDetails"
         android:label="fragment_movie_details"
         tools:layout="@layout/fragment_movie_details" >
         <argument
@@ -62,11 +29,27 @@
     </fragment>
     <fragment
         android:id="@+id/movieReviews"
-        android:name="com.example.moviesapp.presentation.Fragments.MovieReviews"
+        android:name="com.example.moviesapp.presentation.fragments.MovieReviews"
         android:label="fragment_movie_reviews"
         tools:layout="@layout/fragment_movie_reviews" >
         <argument
             android:name="movieId"
             app:argType="long" />
+        <action
+            android:id="@+id/action_movieReviews_to_movieDetails"
+            app:destination="@id/movieDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/moviesSeeAll"
+        android:name="com.example.moviesapp.presentation.fragments.MoviesSeeAll"
+        android:label="fragment_movies_see_all"
+        tools:layout="@layout/fragment_movies_see_all" >
+        <argument
+            android:name="type"
+            app:argType="com.example.moviesapp.data.filteration.MovieFilter"
+            android:defaultValue="NOW_PLAYING" />
+        <action
+            android:id="@+id/action_moviesSeeAll_to_movieDetails"
+            app:destination="@id/movieDetails" />
     </fragment>
 </navigation>

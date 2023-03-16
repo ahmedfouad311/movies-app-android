@@ -18,8 +18,6 @@ val moviesRepositoryModule = module {
             trailersService = get(),
             reviewsService = get(),
             castService = get(),
-            ioThread = get(named("io")),
-            mainThread = get(named("main")),
             sharedPreferences = androidApplication().getSharedPreferences("MOVIES_APP_SHARED_PREF", Context.MODE_PRIVATE)
         )
     }

@@ -1,30 +1,25 @@
-package com.example.moviesapp.presentation.Fragments
+package com.example.moviesapp.presentation.fragments
 
 import PlayingNowAdapter
 import PopularAdapter
 import TopRatedAdapter
-import android.content.Context
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.SnapHelper
 import com.example.moviesapp.R
+import com.example.moviesapp.data.filteration.MovieFilter
 import com.example.moviesapp.data.models.MovieCategoryResponse
-import com.example.moviesapp.data.models.PlayingNowResponse
-import com.example.moviesapp.data.models.PopularResponse
-import com.example.moviesapp.data.models.TopRatedResponse
+import com.example.moviesapp.data.models.MoviesResponse
 import com.example.moviesapp.presentation.viewModels.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.text.FieldPosition
 
 
 class MainFragment : Fragment() {
@@ -51,7 +46,7 @@ class MainFragment : Fragment() {
 
         viewModel.getNowPlaying()
         viewModel.nowPlayingLiveData.observe(viewLifecycleOwner) {
-            if(it is PlayingNowResponse){
+            if(it is MoviesResponse){
                 Log.d(MainFragment::class.java.simpleName, "Playing Now: ${it.results}")
                 playingNowAdapter.setData(it.results)
                 rvPlayingNow.adapter = playingNowAdapter
@@ -70,7 +65,7 @@ class MainFragment : Fragment() {
         })
         viewModel.getPopular()
         viewModel.popularLiveData.observe(viewLifecycleOwner){
-            if(it is PopularResponse){
+            if(it is MoviesResponse){
                 Log.d(MainFragment::class.java.simpleName, "Popular: ${it.results}")
                 popularAdapter.setData(it.results)
                 rvPopular.adapter = popularAdapter
@@ -91,7 +86,7 @@ class MainFragment : Fragment() {
         })
         viewModel.getTopRated()
         viewModel.topRatedLiveData.observe(viewLifecycleOwner){
-            if(it is TopRatedResponse){
+            if(it is MoviesResponse){
                 Log.d(MainFragment::class.java.simpleName, "Top Rated: ${it.results}")
                 topRatedAdapter.setData(it.results)
                 rvTopRated.adapter = topRatedAdapter
@@ -123,19 +118,19 @@ class MainFragment : Fragment() {
 
         // See All Button Playing Now
         tvPlayingNowSeeAll.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(R.id.playingNowSeeAll)
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToMoviesSeeAll(MovieFilter.NOW_PLAYING))
         })
 
 
         // See All Button Popular Recycler View
         tvPopularSeeAll.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(R.id.popularSeeAll)
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToMoviesSeeAll(MovieFilter.POPULAR))
         })
 
 
         // See All Top Rated Recycler View
         tvTopRatedSeeAll.setOnClickListener(View.OnClickListener {
-            findNavController().navigate(R.id.topRatedSeeAll)
+            findNavController().navigate(MainFragmentDirections.actionMainFragmentToMoviesSeeAll(MovieFilter.TOP_RATED))
         })
     }
 

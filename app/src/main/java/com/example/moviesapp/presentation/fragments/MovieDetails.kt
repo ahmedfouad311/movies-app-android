@@ -1,4 +1,4 @@
-package com.example.moviesapp.presentation.Fragments
+package com.example.moviesapp.presentation.fragments
 
 import android.content.Intent
 import android.net.Uri
@@ -8,31 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider.NewInstanceFactory.Companion.instance
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.example.moviesapp.MainActivity
+import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.R
-import com.example.moviesapp.data.models.MovieCastResponse
 import com.example.moviesapp.data.models.MovieDetailsResponse
-import com.example.moviesapp.data.models.MovieReviewsResponse
 import com.example.moviesapp.data.models.MovieTrailersResponse
-import com.example.moviesapp.presentation.Adapters.CastAdapter
-import com.example.moviesapp.presentation.Adapters.TrailersAdapter
+import com.example.moviesapp.presentation.adapters.CastAdapter
+import com.example.moviesapp.presentation.adapters.TrailersAdapter
 import com.example.moviesapp.presentation.viewModels.DetailsViewModel
-import com.example.moviesapp.presentation.viewModels.MainViewModel
 import com.example.moviesapp.presentation.viewModels.ReviewsViewModel
-import com.example.moviesapp.utils.Videos
-import io.reactivex.rxjava3.internal.operators.maybe.MaybeToPublisher.instance
-import io.reactivex.rxjava3.internal.util.ListAddBiConsumer.instance
 import kotlinx.android.synthetic.main.fragment_movie_details.*
-import kotlinx.android.synthetic.main.trailers_item.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.format.DateTimeFormatter
 
-class MovieDetails : Fragment(), Videos {
+class MovieDetails : Fragment(){
     private val viewModel by viewModel<DetailsViewModel>()
     private val reviewsViewModel by viewModel<ReviewsViewModel>()
     private val args by navArgs<MovieDetailsArgs>()
@@ -49,6 +40,7 @@ class MovieDetails : Fragment(), Videos {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        progressBar.visibility = View.VISIBLE
         Log.d("Args from Details", "args ${args.movieId}")
         viewModel.getMovieDetails(args.movieId)
         viewModel.movieDetailsLiveDataError.observe(viewLifecycleOwner){
@@ -56,6 +48,7 @@ class MovieDetails : Fragment(), Videos {
         }
         viewModel.movieDetailsLiveData.observe(viewLifecycleOwner){
             if(it is MovieDetailsResponse){
+                progressBar.visibility = View.INVISIBLE
                 ivMoviePosterDetails.load("https://image.tmdb.org/t/p/original/${it.poster_path}")
                 tvDetailsMovieName.text = it.title
                 tvMovieDetailRatingNumber.text = "(${it.vote_count}  reviews)"
@@ -67,6 +60,10 @@ class MovieDetails : Fragment(), Videos {
                 }
                 tvMovieCategoryDetails.text = list.toString()
             }
+        }
+
+        ivBackArrowIcon.setOnClickListener(){
+            findNavController().navigate(R.id.mainFragment)
         }
 
 
@@ -103,7 +100,7 @@ class MovieDetails : Fragment(), Videos {
                 tvReviewerRate.text = it.results[0].author_details.rating.toString()
 
                 ivMovieDetailsReviewsUserPhoto.visibility = View.VISIBLE
-                ivMovieDetailsReviewsUserPhoto.load("https://image.tmdb.org/t/p/original/${it.results[0].author_details.avatar_path}")
+                ivMovieDetailsReviewsUserPhoto.load("${BuildConfig.API_IMAGE_LOADING_URL}${it.results[0].author_details.avatar_path}")
 
                 ivReviewerRate.visibility = View.VISIBLE
 
@@ -145,11 +142,5 @@ class MovieDetails : Fragment(), Videos {
         viewModel.movieCastLiveDataError.observe(viewLifecycleOwner){
             Log.d("Fail", "Cast Error $it")
         }
-    }
-
-    override fun playVideos(key: String) {
-        val urlIntent = Intent(Intent.ACTION_VIEW)
-        urlIntent.data = Uri.parse("https://www.youtube.com/watch?v=${key}")
-        requireActivity().startActivity(urlIntent)
     }
 }

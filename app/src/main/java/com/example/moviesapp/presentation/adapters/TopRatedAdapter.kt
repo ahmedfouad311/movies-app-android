@@ -5,30 +5,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.R
-import com.example.moviesapp.data.models.TopRatedResponse
-import kotlinx.android.synthetic.main.playing_now_item.view.*
-import kotlinx.android.synthetic.main.popular_item.view.*
+import com.example.moviesapp.data.models.MoviesResponse
 import kotlinx.android.synthetic.main.top_rated_item.view.*
-import java.util.zip.Inflater
 
 class TopRatedAdapter(val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.Adapter<TopRatedAdapter.MyViewHolder>() {
-    private var topRatedMovies = listOf<TopRatedResponse.Result>()
+    private var topRatedMovies = listOf<MoviesResponse.Result>()
 
     class MyViewHolder(itemView: View, val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.ViewHolder(itemView) {
-        fun bindData(movie: TopRatedResponse.Result){
+        fun bindData(movie: MoviesResponse.Result){
             itemView.tvMovieNameTopRated.text = movie.original_title
             itemView.tvDescriptionTopRated.text = movie.release_date
             itemView.tvMovieRateTopRated.text = movie.vote_average.toString()
             itemView.tvMovieRateCountTopRated.text = "(${movie.vote_count})"
-            itemView.ivTopRated.load("https://image.tmdb.org/t/p/original/${movie.poster_path}")
+            itemView.ivTopRated.load("${BuildConfig.API_IMAGE_LOADING_URL}${movie.poster_path}")
             itemView.cvTopRatedCard.setOnClickListener(){
                 movieItemCallBack(movie.id.toLong())
             }
         }
     }
 
-    fun setData(movies: List<TopRatedResponse.Result>){
+    fun setData(movies: List<MoviesResponse.Result>){
         topRatedMovies = movies
     }
 

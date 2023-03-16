@@ -5,21 +5,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.R
-import com.example.moviesapp.data.models.PopularResponse
+import com.example.moviesapp.data.models.MoviesResponse
 import kotlinx.android.synthetic.main.playing_now_item.view.*
 import kotlinx.android.synthetic.main.popular_item.view.*
 
 class PopularAdapter(val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.Adapter<PopularAdapter.MyViewHolder>() {
-    private var popularMovies = listOf<PopularResponse.Result>()
+    private var popularMovies = listOf<MoviesResponse.Result>()
 
     class MyViewHolder(itemView: View, val movieItemCallBack: (movieId: Long) -> Unit): RecyclerView.ViewHolder(itemView) {
-        fun bindData(movie: PopularResponse.Result){
+        fun bindData(movie: MoviesResponse.Result){
             itemView.tvMovieNamePopular.text = movie.original_title
             itemView.tvDescriptionPopular.text = movie.release_date
             itemView.tvMovieRatePopular.text = movie.vote_average.toString()
             itemView.tvMovieRateCountPopular.text = "(${movie.vote_count})"
-            itemView.ivPopular.load("https://image.tmdb.org/t/p/original/${movie.poster_path}")
+            itemView.ivPopular.load("${BuildConfig.API_IMAGE_LOADING_URL}${movie.poster_path}")
             itemView.cvPopularCard.setOnClickListener(){
                 movieItemCallBack(movie.id.toLong())
             }
@@ -27,7 +28,7 @@ class PopularAdapter(val movieItemCallBack: (movieId: Long) -> Unit): RecyclerVi
         }
     }
 
-    fun setData(movies: List<PopularResponse.Result>){
+    fun setData(movies: List<MoviesResponse.Result>){
         popularMovies = movies
     }
 

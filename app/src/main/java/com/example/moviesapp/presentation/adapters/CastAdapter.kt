@@ -1,10 +1,11 @@
-package com.example.moviesapp.presentation.Adapters
+package com.example.moviesapp.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.moviesapp.BuildConfig
 import com.example.moviesapp.R
 import com.example.moviesapp.data.models.MovieCastResponse
 import kotlinx.android.synthetic.main.cast_item.view.*
@@ -13,7 +14,7 @@ class CastAdapter: RecyclerView.Adapter<CastAdapter.MyViewHolder>() {
     private var castList = listOf<MovieCastResponse.Cast>()
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bindData(cast: MovieCastResponse.Cast){
-            itemView.ivCastPic.load("https://image.tmdb.org/t/p/original/${cast.profile_path}")
+            itemView.ivCastPic.load("${BuildConfig.API_IMAGE_LOADING_URL}${cast.profile_path}")
             itemView.tvCastRealName.text = cast.original_name
             itemView.tvCastMovieName.text = cast.name
         }

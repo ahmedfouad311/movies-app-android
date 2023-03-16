@@ -1,18 +1,11 @@
-package com.example.moviesapp.presentation.Adapters
+package com.example.moviesapp.presentation.adapters
 
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.example.moviesapp.MainActivity
 import com.example.moviesapp.R
 import com.example.moviesapp.data.models.MovieTrailersResponse
-import com.example.moviesapp.data.models.PlayingNowResponse
-import com.example.moviesapp.utils.Videos
-import kotlinx.android.synthetic.main.playing_now_item.view.*
 import kotlinx.android.synthetic.main.trailers_item.view.*
 
 class TrailersAdapter(val movieItemCallBack: (videoKey: String) -> Unit): RecyclerView.Adapter<TrailersAdapter.MyViewHolder>() {

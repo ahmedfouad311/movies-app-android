@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/main_background_color"
-    android:id="@+id/cvTopRatedSeeAllCard">
+    android:id="@+id/cvMoviesSeeAllCard">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
         android:background="@color/main_background_color">
 
         <ImageView
-            android:id="@+id/ivTopRatedSeeAll"
+            android:id="@+id/ivMoviesSeeAll"
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -24,11 +24,11 @@
         </ImageView>
 
         <TextView
-            android:id="@+id/tvMovieNameTopRatedSeeAll"
+            android:id="@+id/tvMovieNameMoviesSeeAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
+            app:layout_constraintStart_toEndOf="@id/ivMoviesSeeAll"
             android:layout_marginTop="30dp"
             android:text="Movie Name"
             android:textColor="@color/white"
@@ -38,11 +38,11 @@
         </TextView>
 
         <TextView
-            android:id="@+id/tvDescriptionTopRatedSeeAll"
+            android:id="@+id/tvDescriptionMoviesSeeAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
-            app:layout_constraintTop_toBottomOf="@id/tvMovieNameTopRatedSeeAll"
+            app:layout_constraintStart_toEndOf="@id/ivMoviesSeeAll"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieNameMoviesSeeAll"
             android:text="Description"
             android:textColor="@color/white"
             android:textSize="13sp"
@@ -55,8 +55,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivTopRatedSeeAll"
-            app:layout_constraintTop_toBottomOf="@id/tvDescriptionTopRatedSeeAll"
+            app:layout_constraintStart_toEndOf="@id/ivMoviesSeeAll"
+            app:layout_constraintTop_toBottomOf="@id/tvDescriptionMoviesSeeAll"
             app:layout_constraintVertical_bias="0.0"
             android:layout_marginStart="17dp">
 
@@ -68,7 +68,7 @@
             </ImageView>
 
             <TextView
-                android:id="@+id/tvTopRatedSeeAllRate"
+                android:id="@+id/tvMoviesSeeAllRate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="5dp"
@@ -78,7 +78,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/tvTopRatedSeeAllRateCount"
+                android:id="@+id/tvMoviesSeeAllRateCount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="5dp"

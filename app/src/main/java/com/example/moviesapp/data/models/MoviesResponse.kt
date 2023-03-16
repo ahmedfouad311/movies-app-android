@@ -3,19 +3,12 @@ package com.example.moviesapp.data.models
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class PlayingNowResponse(
-    val dates: Dates,
+data class MoviesResponse(
     val page: Int,
     val results: List<Result>,
     val total_pages: Int,
     val total_results: Int
 ) {
-    @JsonClass(generateAdapter = true)
-    data class Dates(
-        val maximum: String,
-        val minimum: String
-    )
-
     @JsonClass(generateAdapter = true)
     data class Result(
         val adult: Boolean,

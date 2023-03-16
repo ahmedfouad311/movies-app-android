@@ -1,4 +1,4 @@
-package com.example.moviesapp.presentation.Fragments
+package com.example.moviesapp.presentation.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -6,10 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.R
-import com.example.moviesapp.presentation.Adapters.ReviewSeeAllAdapter
+import com.example.moviesapp.presentation.adapters.ReviewSeeAllAdapter
 import com.example.moviesapp.presentation.viewModels.ReviewsViewModel
 import kotlinx.android.synthetic.main.fragment_movie_reviews.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -45,6 +46,10 @@ class MovieReviews : Fragment() {
                 rvReviewsSeeAll.visibility = View.GONE
                 tvNoReviewsSeeAll.visibility = View.VISIBLE
             }
+        }
+
+        ivReviewsSeeAllBackIcon.setOnClickListener(){
+            findNavController().navigate(MovieReviewsDirections.actionMovieReviewsToMovieDetails(args.movieId))
         }
     }
 }
